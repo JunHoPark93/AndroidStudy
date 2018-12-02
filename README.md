@@ -1,7 +1,6 @@
 # AndroidStudy
 repository for android study :)
 
-### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
 
 ## 기본 기능들의 주요 함수 정리 (참고용)
 #### 1. Dialog
@@ -22,3 +21,29 @@ setProgressStyle로 스타일을 지정할 수 있다.
 dialog layout을 만든 뒤 LayoutInflater 생성 (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE)
 View 객체 생성 후 inflater 객체의 inflate함수로 layout불러 옴 
 builder의 setView에 view를 세팅
+
+
+#### 2. Event
+
+2.1 Delegation Event Model
+뷰에서 발생하는 이벤트를 처리한다.
+Event Source(View) 에 Event Handler(Event 처리코드)를 Listener로 연결시켜주는 작업
+
+```java
+button.setOnClickListener(new EventHandler());
+
+```
+이런식으로 이벤트 핸들러 객체를 리스너 안에 넣어준다. 
+
+2.2 Hierarchy Event Model
+키 이벤트와 화면 터치 이벤트를 처리하는 모델이다.
+```java
+@Override
+public boolean onTouchEvent(MotionEvent event) {
+    return super.onTouchEvent(event);
+}
+```
+
+
+#### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
+#### 기본 내용정리출처 : 1. 깡샘의 안드로이드 프로그래밍 - 강성윤 저
