@@ -43,7 +43,26 @@ public boolean onTouchEvent(MotionEvent event) {
     return super.onTouchEvent(event);
 }
 ```
+#### 3. Resource
 
+3.1 폴더종류
+drawable, layout, values, menu, xml, anim, raw, mipmap
+
+3.2 values폴더 내용 (권장 파일명)
+string.xml, colors.xml, styles.xml, arrays.xml, dimens.xml
+
+```java
+<resources>
+    <dimen name="my_margin">16dp</dimen>
+    <dimen name="my_padding">16dp</dimen>
+</resources>
+
+<Button 
+    android:padding="@dimen/my_padding"/>
+
+```
+이런식으로 리소스 폴더에서 가져올 수 있다. xml에서의 컴포넌트들의 속성에 대한 중복성 감소
+style과 theme도 마찬가지이다.
 
 #### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
 #### 기본 내용정리출처 : 1. 깡샘의 안드로이드 프로그래밍 - 강성윤 저
