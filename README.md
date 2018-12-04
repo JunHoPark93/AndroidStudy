@@ -64,5 +64,30 @@ string.xml, colors.xml, styles.xml, arrays.xml, dimens.xml
 이런식으로 리소스 폴더에서 가져올 수 있다. xml에서의 컴포넌트들의 속성에 대한 중복성 감소
 style과 theme도 마찬가지이다.
 
+
+#### 4. Display
+4.1 크기
+dp : Density Independent Pixels 스크린의 물리적 밀도에 기초한 단위 (권장)
+sp : Scale Independent Pixels dp와 유사하고 폰트 크기에 적용 (권장)
+
+
+#### 5. Layout
+layoutsamples 폴더 안
+```java
+<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+</ScrollView>
+<LinearLayout>
+</LinearLayout>
+```
+이렇게 weight 1 로 두고 밑에 레이아웃 하나정의해주면 LinearLayout은 여기서 저 바닥 끝까지밀린다.
+
+```java
+android:adjustViewBounds="true"
+```
+Set this to true if you want the ImageView to adjust its bounds to preserve the aspect ratio of its drawable. 
+
 #### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
 #### 기본 내용정리출처 : 1. 깡샘의 안드로이드 프로그래밍 - 강성윤 저
