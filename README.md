@@ -89,5 +89,98 @@ android:adjustViewBounds="true"
 ```
 Set this to true if you want the ImageView to adjust its bounds to preserve the aspect ratio of its drawable. 
 
+
+#### 6. SQLITE
+6.1 DB Helper 클래스의 정의
+
+```java
+public class DBHelper extends SQLiteOpenHelper {
+
+    public static final int DATABASE_VERSION = 1;
+
+    public DBHelper(Context context) {
+        super(context, "filename", null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if(newVersion == DATABASE_VERSION) {
+        }
+    }
+}
+```
+SQLiteOpenHelper추상클래스를 상속하여 메소드 구현을 해준다. OnCreate는 앱이 설치되고 한 번 호출되고 나중에 db수정을 할 때에는 onUpgrade를 호출해 준다.
+
+
+```java
+DBHelper helper = new DBHelper(this);
+SQLiteDatabase db = helper.getWritableDatabase();
+
+Cursor cursor = db.rawQuery("", null);
+
+while(cursor.moveToNext()) {
+    // cursor 조작
+}
+
+db.close();
+
+```
+받는 곳에서는 이런 식으로 db 헬퍼를 가져와 커서 객체를 사용하여 데이터를 조회한다.
+
+
+#### 7. REALM
+7.1 REALM 환경 설정
+
+Root에 있는 build.gradle에 dependencies에 
+```java
+classpath 'io.realm:realm-gradle-plugin:5.8.0'
+
+```
+를 추가해 주고
+
+사용하는 module의 build.gradle에는
+```java
+apply plugin: 'realm-android' // 상단에추가
+compileOptions {
+     sourceCompatibility JavaVersion.VERSION_1_8
+     targetCompatibility JavaVersion.VERSION_1_8
+ }
+```
+를 추가해준다. 저기 compileOptions에는 소스와 타겟의 자바 버젼을 명시해주는데 이 내용이 없으면 오류가 발생한다.
+https://developer.android.com/studio/write/java8-support#disable_jack 에서 참고를 해 보았다. 참조하는 써드 파티 모듈이 java 8 버젼을 사용한다면 명시해주라고 한다. 초기 프로젝트 설정할 때 소스와 타겟을 정한다면 상관없다.
+내용을 덧붙이자면 javac(자바 컴파일러)가 class파일을 만들고 그 class 파일을 desugar하는 작업이 필요한데 이 작업을 가능케 해주는 것이 저 설정이다. desugar된 클래스파일을 dex컴파일러가 컴파일해 .dex파일로 만들어준다.
+
+7.2 REALM 활용
+안드로이드에서도 ORM을 쓸 수 있게 해준다. 
+VO 객체에 RealmObject를 상속하게 한다.
+
+```java
+public class MemoVO extends RealmObject {}
+```
+
+간단한 접근 방식을 보자.
+
+```java
+Realm.init(this);
+Realm realm = Realm.getDefaultInstance();
+realm.executeTransaction(new Realm.Transaction() {
+    @Override
+    public void execute(Realm realm) {
+       // vo 작업
+    }
+});
+
+Realm realm = Realm.getDefaultInstance();
+MemoVO vo = realm.where(MemoVO.class)
+        .equalTo("title", title)
+        .findFirst();
+```
+
+위에는 저장하는 작업 밑에는 반환하는 작업이다. 저장할때 executeTransaction으로 매핑작업을 해준 후 반환 할 때에는 저런 방식으로 반환하게 된다. 가시적으로 잘 보이니 넘어간다.
+
 #### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
 #### 기본 내용정리출처 : 1. 깡샘의 안드로이드 프로그래밍 - 강성윤 저
