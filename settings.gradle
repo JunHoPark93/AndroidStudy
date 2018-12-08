@@ -1,1 +1,1 @@
-include ':app', ':systemcontrol', ':dialog', ':event', ':resourcecontrol', ':layoutsamples'
+include ':app', ':systemcontrol', ':dialog', ':event', ':resourcecontrol', ':layoutsamples', ':sqlitesamples'
