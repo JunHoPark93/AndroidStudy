@@ -3,7 +3,7 @@ repository for android study :)
 
 
 ## 기본 기능들의 주요 함수 정리 (참고용)
-#### 1. Dialog
+### 1. Dialog
 
 1.1 기본 Alert Dialog
 다양한 설정에 따라 많은 dialog가 나오기 때문에 Builder class로 생성해 준다. 만든 후 맞는 dialog에 builder.create()를 해준다. 
@@ -23,7 +23,7 @@ View 객체 생성 후 inflater 객체의 inflate함수로 layout불러 옴
 builder의 setView에 view를 세팅
 
 
-#### 2. Event
+### 2. Event
 
 2.1 Delegation Event Model
 뷰에서 발생하는 이벤트를 처리한다.
@@ -43,7 +43,7 @@ public boolean onTouchEvent(MotionEvent event) {
     return super.onTouchEvent(event);
 }
 ```
-#### 3. Resource
+### 3. Resource
 
 3.1 폴더종류
 drawable, layout, values, menu, xml, anim, raw, mipmap
@@ -65,13 +65,13 @@ string.xml, colors.xml, styles.xml, arrays.xml, dimens.xml
 style과 theme도 마찬가지이다.
 
 
-#### 4. Display
+### 4. Display
 4.1 크기
 dp : Density Independent Pixels 스크린의 물리적 밀도에 기초한 단위 (권장)
 sp : Scale Independent Pixels dp와 유사하고 폰트 크기에 적용 (권장)
 
 
-#### 5. Layout
+### 5. Layout
 layoutsamples 폴더 안
 ```java
 <ScrollView
@@ -90,7 +90,7 @@ android:adjustViewBounds="true"
 Set this to true if you want the ImageView to adjust its bounds to preserve the aspect ratio of its drawable. 
 
 
-#### 6. SQLITE
+### 6. SQLITE
 6.1 DB Helper 클래스의 정의
 
 ```java
@@ -132,7 +132,7 @@ db.close();
 받는 곳에서는 이런 식으로 db 헬퍼를 가져와 커서 객체를 사용하여 데이터를 조회한다.
 
 
-#### 7. REALM
+### 7. REALM
 7.1 REALM 환경 설정
 
 Root에 있는 build.gradle에 dependencies에 
@@ -181,6 +181,13 @@ MemoVO vo = realm.where(MemoVO.class)
 ```
 
 위에는 저장하는 작업 밑에는 반환하는 작업이다. 저장할때 executeTransaction으로 매핑작업을 해준 후 반환 할 때에는 저런 방식으로 반환하게 된다. 가시적으로 잘 보이니 넘어간다.
+
+
+### SharedPreferences
+앱의 데이터를 영속적으로 저장하기 위한 클래스. key-value형태로 저장되는데 자동으로 activity 이름의 파일내에 저장한다. 
+getPreferences(int mode) : 다른 액티비티에서는 데이터를 이용을 못함.
+getSharedPreferences(String name, int mode) : 다른곳에서 사용 가능
+
 
 #### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
 #### 기본 내용정리출처 : 1. 깡샘의 안드로이드 프로그래밍 - 강성윤 저
