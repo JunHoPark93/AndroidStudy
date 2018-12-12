@@ -183,10 +183,15 @@ MemoVO vo = realm.where(MemoVO.class)
 위에는 저장하는 작업 밑에는 반환하는 작업이다. 저장할때 executeTransaction으로 매핑작업을 해준 후 반환 할 때에는 저런 방식으로 반환하게 된다. 가시적으로 잘 보이니 넘어간다.
 
 
-### SharedPreferences
+### 8. SharedPreferences
 앱의 데이터를 영속적으로 저장하기 위한 클래스. key-value형태로 저장되는데 자동으로 activity 이름의 파일내에 저장한다. 
 getPreferences(int mode) : 다른 액티비티에서는 데이터를 이용을 못함.
 getSharedPreferences(String name, int mode) : 다른곳에서 사용 가능
+
+### 9. AdapterView
+이제는 legacy항목으로 들어간 listview. RecyclerView를 쓰자.
+(어떤 방식으로 썼었는지 확인하기 위해 그냥 추가)
+
 
 
 #### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
