@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Item"
+        android:icon="@drawable/ic_menu_1"
+        android:id="@+id/menu1"/>
+    <item
+        android:title="Item"
+        android:icon="@drawable/ic_menu_2"
+        android:id="@+id/menu2"/>
+    <item
+        android:id="@+id/file"
+        android:title="SubMenu">
+        <menu>
+            <item android:id="@+id/sub1"
+                android:title="sub1"/>
+            <item android:id="@+id/sub2"
+                android:title="sub2"/>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/menu4"
+        android:title="ACtions"
+        android:icon="@drawable/ic_menu_2"
+        app:showAsAction="always"/>
+</menu>
