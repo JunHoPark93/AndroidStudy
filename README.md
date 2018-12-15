@@ -192,7 +192,12 @@ getSharedPreferences(String name, int mode) : 다른곳에서 사용 가능
 이제는 legacy항목으로 들어간 listview. RecyclerView를 쓰자.
 (어떤 방식으로 썼었는지 확인하기 위해 그냥 추가)
 
-
+### 10. Action Bar
+```java
+<item name="windowActionBar">false</item>
+<item name="windowNoTitle">true</item>
+```
+ActionBar를 숨기려면 values/style.xml 에 정의를 해준다.
 
 #### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
 #### 기본 내용정리출처 : 1. 깡샘의 안드로이드 프로그래밍 - 강성윤 저
