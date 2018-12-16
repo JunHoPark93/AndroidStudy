@@ -199,5 +199,49 @@ getSharedPreferences(String name, int mode) : 다른곳에서 사용 가능
 ```
 ActionBar를 숨기려면 values/style.xml 에 정의를 해준다.
 
+### 11. Custom View
+개발자가 직접 만든 속성을 이용하려면 res/values폴더 하위에 attr.xml을 만든 후 정의를 해준다.
+```java
+<resources>
+    <declare-styleable name="MyView">
+        <attr name="customTextColor" format="color"/>
+    </declare-styleable>
+</resources>
+```
+declare-styleable은 여러 attr을 묶을 수 있다. attr속성중 name은 xml에서 사용할 수 있는 속성명이 되고 format은 string, integer, enum, dimension 등 다양하게 지정할 수 있다.
+이렇게 등록을 해놓는다면 xml에서 사용할 때는 개발자가 사용할 네임스페이스를 선언한다.
+
+커스텀뷰를 만들 때 View를 상속하는 class를 정의하는데 xml에서 등록하여 사용할 경우 생성자를 여러개 정의해야한다. xml에 등록할 뷰는 호출할 생성자가 없기 때문에 에러가 발생하므로 3개의 생성자를 모두 정의해준다.
+
+```java
+public class CustomView extends View {
+    Context context;
+
+    public CustomView(Context context, Context context1) {
+        super(context);
+        this.context = context1;
+    }
+
+    public CustomView(Context context, AttributeSet attrs, Context context1) {
+        super(context, attrs);
+        this.context = context1;
+    }
+
+    public CustomView(Context context, AttributeSet attrs, int defStyleAttr, Context context1) {
+        super(context, attrs, defStyleAttr);
+        this.context = context1;
+    }
+}
+```
+그리고 customView의 크기를 결정할 때에는 onMeasure()를 override하여 정의한다. 그렇지않으면 customView를 wrap_content함에도 불구하고 화면을 다 차지해버린다.
+MeasureSpec.AT_MOST = xml에서 wrap_content로 지정한 경우
+MeasureSpec.EXACTLY = xml에서 match_parent나 size를 지정한 경우
+
+
+```java
+```
+```java
+```
+
 #### git ignore 설정 : github 공식 repository에서의 android gitignore 참조
 #### 기본 내용정리출처 : 1. 깡샘의 안드로이드 프로그래밍 - 강성윤 저
